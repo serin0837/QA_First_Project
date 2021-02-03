@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from application import app, db
-from application.models import Run
+from application.models import Register
 
 
 @app.route('/', methods=["GET", "POST"])

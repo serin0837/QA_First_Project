@@ -1,12 +1,8 @@
 from application import db
-# from flask import Flask, render_template, request
-# from flask_wtf import FlaskForm
 
 
 class Register(db.Model):
     name = db.Column(db.String(30), nullable=False, primary_key=True)
-    # id = db.Column(db.Integer)
-    # password = db.Column(db.Integer)
 
 
 class Run(db.Model):
