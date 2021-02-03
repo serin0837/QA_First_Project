@@ -1,8 +1,9 @@
 from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from application import app, db
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/home', methods=["GET", "POST"])
 def home():
     if request.form:
         person = Register(name=request.form.get("name"))
@@ -29,12 +30,12 @@ def delete():
 
 
 # Adding Run
-@app.route("/addRun", methods=['GET', 'POST'])
-def addRun():
-    form = AddRun()
-    if form.validate_on_submit():
-        run_to_add = Product(
-            km=form.km.data)
-        db.session.add(run_to_add)
-        db.session.commit()
-        return redirect(url_for('addRun'))
+# @app.route("/addRun", methods=['GET', 'POST'])
+# def addRun():
+#     form = AddRun()
+#     if form.validate_on_submit():
+#         run_to_add = Product(
+#             km=form.km.data)
+#         db.session.add(run_to_add)
+#         db.session.commit()
+#         return redirect(url_for('addRun'))

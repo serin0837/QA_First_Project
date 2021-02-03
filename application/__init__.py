@@ -1,7 +1,9 @@
+from application import routes
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 import pymysql
+
 
 app = Flask(__name__)
 
