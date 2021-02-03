@@ -1,9 +1,10 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from application import app, db
+from application.models import Run
 
 
-@app.route('/home', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def home():
     if request.form:
         person = Register(name=request.form.get("name"))

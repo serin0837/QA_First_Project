@@ -1,6 +1,6 @@
 from application import db
-from flask import Flask, render_template, request
-from flask_wtf import FlaskForm
+# from flask import Flask, render_template, request
+# from flask_wtf import FlaskForm
 
 
 class Register(db.Model):
