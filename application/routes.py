@@ -3,12 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from application import app, db
 from application.models import Register
 
+db.create_all()
+
 
 @app.route('/', methods=["GET", "POST"])
 def home():
     if request.form:
-        person = Register(name=request.form.get("name"))
-        db.session.add(person)
+        exercise = Register(name=request.form.get("name"))
+        db.session.add(exercise)
         db.session.commit()
     registrees = Register.query.all()
     return render_template("home.html", registrees=registrees)

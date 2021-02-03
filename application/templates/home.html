@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <title>Add Exercise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>Add Exercise</h1>
+  <form method="POST" action="/">
+    <input type="text" name="name"> <button type="submit" class="btn btn-primary">Add</button>
+    <!-- <input type="text" name="id" > <input type="submit" value="Add">
+      <input type="text" name="password" > <input type="submit" value="Add"> -->
+  </form>
+  <h2>Register</h2>
+  <table>
+    {% for person in registrees %}
+    <tr>
+      <td>
+        {{person.name}}
+      </td>
+      <td>
+        <form method="POST" action="./update">
+          <input type="hidden" value="{{person.name}}" name="oldname">
+          <input type="text" value="{{person.name}}" name="newname">
+          <input type="submit" value="Update">
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="./delete">
+          <input type="hidden" value="{{person.name}}" name="name">
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+
+</html>
