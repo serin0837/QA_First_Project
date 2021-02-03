@@ -10,22 +10,27 @@
 <body>
   <h1>Add Exercise</h1>
   <form method="POST" action="/">
+    <label>Your exercise: </label>
     <input type="text" name="name">
+    <label>What have you done?</label>
     <input type="text" name="done">
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
-  <h2>Exercise</h2>
+  <h2>Exercise List</h2>
   <table>
     {% for exercise in exercises %}
     <tr>
       <td>
-        {{exercise.name}}
-        {{exercise.done}}
+        <!-- {{exercise.name}}
+        {{exercise.done}} -->
+        <!-- add date here automatically-->
       </td>
       <td>
         <form method="POST" action="./update">
           <input type="hidden" value="{{exercise.name}}" name="oldname">
+          <input type="hidden" value="{{exercise.done}}" name="olddone">
           <input type="text" value="{{exercise.name}}" name="newname">
+          <input type="text" value="{{exercise.done}}" name="newndone">
           <input type="submit" value="Update">
         </form>
       </td>

@@ -23,6 +23,9 @@ def update():
     exercise = Exercise.query.filter_by(
         name=request.form.get("oldname")).first()
     exercise.name = request.form.get("newname")
+    exercise = Exercise.query.filter_by(
+        name=request.form.get("oldone")).first()
+    exercise.done = request.form.get("newdone")
     db.session.commit()
     return redirect("/")
 
