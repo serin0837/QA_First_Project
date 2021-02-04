@@ -15,7 +15,7 @@ def home():
         db.session.add(exercise)
         db.session.commit()
     exercises = Exercise.query.all()
-    return render_template("edit_exercise.html", exercises=exercises)
+    return render_template("home.html", exercises=exercises)
 
 
 @app.route("/update", methods=["POST"])
