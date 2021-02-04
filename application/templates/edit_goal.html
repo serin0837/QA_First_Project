@@ -1,27 +1,57 @@
-{% extends "layout.html" %}
+<html>
 
-{% block body_content %}
-<div class='form'>
-    <h2>Add your goal</h2>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.goal_name.label }}<br>
-            {{ form.goal_name(size=25) }}<br>
-        </p>
-        <p>
-            {{ form.goal_setdate.label }}<br>
-            {{ form.goal_setdate }}<br>
-        </p>
-        <p>
-            {{ form.goal_finishdate.label }}<br>
-            {{ form.goal_finishdate }}<br>
-        </p>
-        <p>
-            {{ form.goal_success.label}}<br>
-            {{ form.goal_success }}<br>
-        </p>
-        <p>{{ form.submit() }}</p>
+<head>
+    <title>Add Goal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Add Goal</h1>
+    <form method="POST" action="/goal">
+        <label>Exercise: </label>
+        <input type="text" name="exercise_id">
+        <label>Your Goal: </label>
+        <input type="text" name="goal_name">
+        <label>When did you decide?</label>
+        <input type="date" name="goal_setdate">
+        <label>When you want to achieve your goal?</label>
+        <input type="date" name="goal_finishdate">
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
-</div>
-{% endblock %}
+    <h2>My Goal List</h2>
+    <table>
+        {% for goal in goals %}
+        <tr>
+            <td>
+                {{goal.exercise.name}}
+                {{goal.exercise.done}}
+                {{goal.goal_name}}
+                {{goal.goal_setdate}}
+                {{goal.goal_finishdate}}
+                <!-- add date here automatically-->
+            </td>
+            <td>
+                <form method="POST" action="./update-goal">
+                    <input type="hidden" value="{{goal.id}}" name="oldid">
+                    <input type="hidden" value="{{goal.goal_setdate}}" name="oldsetdate">
+                    <input type="hidden" value="{{goal.goal_finishdate}}" name="oldfinishdate">
+                    <input type="text" value="{{goal.goal_name}}" name="newname">
+                    <input type="text" value="{{goal.goal_setdate}}" name="newsetdate">
+                    <input type="text" value="{{goal.goal_finishdate}}" name="newfinishdate">
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="./delete-goal">
+                    <input type="hidden" value="{{goal.id}}" name="id">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

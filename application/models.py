@@ -2,13 +2,16 @@ from application import db
 
 
 class Exercise(db.Model):
-    name = db.Column(db.String(30), nullable=False,  primary_key=True)
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(30))
     done = db.Column(db.String(100))
-
+    date = db.Column(db.String(30))
+    goal = db.relationship('Goal', backref='exercise')
 
 class Goal(db.Model):
-    goal_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    goal_name = db.Column(db.String, nullable=False)
-    goal_setdate = db.Column(db.String, nullable=False)
-    goal_finishdate = db.Column(db.String, nullable=False)
-    goal_success = db.Column(db.Boolean, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    goal_name = db.Column(db.String)
+    goal_setdate = db.Column(db.String)
+    goal_finishdate = db.Column(db.String)
+    goal_success = db.Column(db.Boolean)
+    exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.id'))

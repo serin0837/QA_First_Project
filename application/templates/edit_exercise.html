@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Add Exercise</title>
+  <title>Exercise Tracker</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -9,11 +9,14 @@
 
 <body>
   <h1>Add Exercise</h1>
+
   <form method="POST" action="/">
     <label>Your exercise: </label>
     <input type="text" name="name">
     <label>What have you done?</label>
     <input type="text" name="done">
+    <label>Date:</label>
+    <input type="date" name="date">
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
   <h2>Exercise List</h2>
@@ -21,16 +24,20 @@
     {% for exercise in exercises %}
     <tr>
       <td>
-        <!-- {{exercise.name}}
-        {{exercise.done}} -->
+        {{exercise.id}}
+        {{exercise.name}}
+        {{exercise.done}}
+        {{exercise.date}}
         <!-- add date here automatically-->
       </td>
       <td>
         <form method="POST" action="./update">
           <input type="hidden" value="{{exercise.name}}" name="oldname">
           <input type="hidden" value="{{exercise.done}}" name="olddone">
+          <input type="hidden" value="{{exercise.date}}" name="olddate">
           <input type="text" value="{{exercise.name}}" name="newname">
-          <input type="text" value="{{exercise.done}}" name="newndone">
+          <input type="text" value="{{exercise.done}}" name="newdone">
+          <input type="text" value="{{exercise.date}}" name="newdate">
           <input type="submit" value="Update">
         </form>
       </td>
