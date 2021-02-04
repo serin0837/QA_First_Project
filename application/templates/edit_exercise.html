@@ -8,48 +8,67 @@
 </head>
 
 <body>
-  <h1>Add Exercise</h1>
-
-  <form method="POST" action="/">
-    <label>Your exercise: </label>
-    <input type="text" name="name">
-    <label>What have you done?</label>
-    <input type="text" name="done">
-    <label>Date:</label>
-    <input type="date" name="date">
-    <button type="submit" class="btn btn-primary">Add</button>
-  </form>
-  <h2>Exercise List</h2>
-  <table>
-    {% for exercise in exercises %}
-    <tr>
-      <td>
-        {{exercise.id}}
-        {{exercise.name}}
-        {{exercise.done}}
-        {{exercise.date}}
-        <!-- add date here automatically-->
-      </td>
-      <td>
-        <form method="POST" action="./update">
-          <input type="hidden" value="{{exercise.name}}" name="oldname">
-          <input type="hidden" value="{{exercise.done}}" name="olddone">
-          <input type="hidden" value="{{exercise.date}}" name="olddate">
-          <input type="text" value="{{exercise.name}}" name="newname">
-          <input type="text" value="{{exercise.done}}" name="newdone">
-          <input type="text" value="{{exercise.date}}" name="newdate">
-          <input type="submit" value="Update">
-        </form>
-      </td>
-      <td>
-        <form method="POST" action="./delete">
-          <input type="hidden" value="{{exercise.name}}" name="name">
-          <input type="submit" value="Delete">
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Exercise Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/goal">Edit Goal</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main class="text-center">
+    <p></p>
+    <h2>Add Exercise🏋️‍♂️💪🏃‍♀️🧗‍♂️</h2>
+    <form method="POST" action="/">
+      <label>Your exercise: </label>
+      <input type="text" name="name">
+      <label>What have you done?</label>
+      <input type="textarea" name="done">
+      <label>Date:</label>
+      <input type="date" name="date">
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <h2>Exercise List</h2>
+    <table>
+      {% for exercise in exercises %}
+      <tr>
+        <td>
+          {{exercise.id}}
+          {{exercise.name}}
+          {{exercise.done}}
+          {{exercise.date}}
+          <!-- add date here automatically-->
+        </td>
+        <td>
+          <form method="POST" action="./update">
+            <input type="hidden" value="{{exercise.name}}" name="oldname">
+            <input type="hidden" value="{{exercise.done}}" name="olddone">
+            <input type="hidden" value="{{exercise.date}}" name="olddate">
+            <input type="text" value="{{exercise.name}}" name="newname">
+            <input type="text" value="{{exercise.done}}" name="newdone">
+            <input type="text" value="{{exercise.date}}" name="newdate">
+            <input type="submit" value="Update">
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="./delete">
+            <input type="hidden" value="{{exercise.name}}" name="name">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </main>
 </body>
 
 </html>
