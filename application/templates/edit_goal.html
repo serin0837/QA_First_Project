@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Exercise Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,12 +20,45 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/goal">Edit Goal</a>
+                    <a class="nav-link" href="/goal">Goal</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <h1>Add Goal</h1>
+    <main class="text-center">
+        <h1 class="h4 mt-5 mb-3">✨Add Goal</h1>
+        <form class=" m-4 w-70" method="POST" action="/goal">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Exercise ID</span>
+                </div>
+                <input type="text" class="form-control" name="exercise_id">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Goal</span>
+                </div>
+                <input type="text" class="form-control" name="goal_name"></input>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Set Date</span>
+                </div>
+                <input type="date" class="form-control" name="goal_setdate">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Finish Date</span>
+                </div>
+                <input type="date" class="form-control" name="goal_finishdate">
+            </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Add</button>
+        </form>
+
+        <!-- 
+
+
     <form method="POST" action="/goal">
         <label>Exercise: </label>
         <input type="text" name="exercise_id">
@@ -36,39 +69,55 @@
         <label>When you want to achieve your goal?</label>
         <input type="date" name="goal_finishdate">
         <button type="submit" class="btn btn-primary">Add</button>
-    </form>
-    <h2>My Goal List</h2>
-    <table>
-        {% for goal in goals %}
-        <tr>
-            <td>
-                {{goal.exercise.name}}
-                {{goal.exercise.done}}
-                {{goal.goal_name}}
-                {{goal.goal_setdate}}
-                {{goal.goal_finishdate}}
-                <!-- add date here automatically-->
-            </td>
-            <td>
-                <form method="POST" action="./update-goal">
-                    <input type="hidden" value="{{goal.id}}" name="oldid">
-                    <input type="hidden" value="{{goal.goal_setdate}}" name="oldsetdate">
-                    <input type="hidden" value="{{goal.goal_finishdate}}" name="oldfinishdate">
-                    <input type="text" value="{{goal.goal_name}}" name="newname">
-                    <input type="text" value="{{goal.goal_setdate}}" name="newsetdate">
-                    <input type="text" value="{{goal.goal_finishdate}}" name="newfinishdate">
-                    <input type="submit" value="Update">
-                </form>
-            </td>
-            <td>
-                <form method="POST" action="./delete-goal">
-                    <input type="hidden" value="{{goal.id}}" name="id">
-                    <input type="submit" value="Delete">
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    </form> -->
+        <h2 class="h4 mt-3">📋My Goal List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Exercise Name</th>
+                    <th scope="col">Goal</th>
+                    <th scope="col">Set Date</th>
+                    <th scope="col">Finish Date</th>
+                    <!-- <th scope="col">achieve</th> -->
+                <tr>
+            </thead>
+            {% for goal in goals %}
+            <tbody>
+                <tr>
+                    <th>{{goal.id}}</th>
+                    <td>{{goal.exercise.name}}</td>
+                    <td>{{goal.goal_name}}</td>
+                    <td>{{goal.goal_setdate}}</td>
+                    <td>{{goal.goal_finishdate}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        (Update data here)
+                        <form method="POST" action="./update-goal">
+                            <input type="hidden" value="{{goal.id}}" name="oldid">
+                            <input type="hidden" value="{{goal.goal_setdate}}" name="oldsetdate">
+                            <input type="hidden" value="{{goal.goal_finishdate}}" name="oldfinishdate">
+                            goal: <input type="text" value="{{goal.goal_name}}" name="newname">
+                            set date: <input type="text" value="{{goal.goal_setdate}}" name="newsetdate">
+                            finish date: <input type="text" value="{{goal.goal_finishdate}}" name="newfinishdate">
+                            <input class="btn btn-outline-success" type="submit" value="Update">
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        <form method="POST" action="./delete-goal">
+                            <input type="hidden" value="{{goal.id}}" name="id">
+                            <input class="btn btn-outline-danger" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </main>
 </body>
 
 </html>

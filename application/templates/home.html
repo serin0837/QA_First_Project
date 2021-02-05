@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Exercise Tracker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,34 +20,108 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/goal">Edit Goal</a>
+          <a class="nav-link" href="/goal">Goal</a>
         </li>
       </ul>
     </div>
   </nav>
   <main class="text-center">
-    <p></p>
-    <h2>Add Exercise🏋️‍♂️💪🏃‍♀️🧗‍♂️</h2>
-    <form method="POST" action="/">
-      <label>Your exercise: </label>
-      <input type="text" name="name">
+    <h1 class="m-5 h3">In this application, you can track your exercise and set your goal.
+      Let's make you fit!
+    </h1>
+    <h2 class="h4">💪Add Exercise</h2>
+    <form class=" m-4 w-70" method="POST" action="/">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">What Exercise</span>
+        </div>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">What I have done</span>
+        </div>
+        <textarea class="form-control" name="done" aria-label="With textarea"></textarea>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Date</span>
+        </div>
+        <input type="date" class="form-control" name="date">
+      </div>
+      <!-- 
+      <label>Exercise: </label>
+      <input type="text" name="name"><br>
       <label>What have you done?</label>
-      <input type="textarea" name="done">
+      <textarea type="textarea" name="done"></textarea><br>
       <label>Date:</label>
-      <input type="date" name="date">
-      <button type="submit" class="btn btn-primary">Add</button>
+      <input type="date" name="date"><br> -->
+      <button type="submit" class="btn btn-secondary">Add</button>
     </form>
-    <h2>Exercise List</h2>
-    <table>
+    <h2 class="h4 mt-3">📋Exercise List</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exercise Name</th>
+          <th scope="col">Exercise Done</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
       {% for exercise in exercises %}
+      <tbody>
+        <tr>
+          <th scope="row">{{exercise.id}}</th>
+          <td>{{exercise.name}}</td>
+          <td>{{exercise.done}}</td>
+          <td>{{exercise.date}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            (Update data here)
+            <form method="POST" action="./update">
+              <input type="hidden" value="{{exercise.name}}" name="oldname">
+              <input type="hidden" value="{{exercise.done}}" name="olddone">
+              <input type="hidden" value="{{exercise.date}}" name="olddate">
+              name: <input type="text" value="{{exercise.name}}" name="newname">
+              done: <input type="text" value="{{exercise.done}}" name="newdone">
+              date: <input type="text" value="{{exercise.date}}" name="newdate">
+              <input class="btn btn-outline-success" type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete">
+              <input type="hidden" value="{{exercise.name}}" name="name">
+              <input class="btn btn-outline-danger" type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+
+
+    <!-- 
+
+
+
+    <table className="m-4 w-70 border">
+      {% for exercise in exercises %}
+      <tr class="border border-secondary">
+        <th class="border border-secondary">Id</th>
+        <th class="border border-secondary">Exercise Name</th>
+        <th class="border border-secondary">Exercise Done</th>
+        <th class="border border-secondary">Date</th>
+      </tr>
+      <tr class="border border-secondary">
+        <td class="border border-secondary">{{exercise.id}} </td>
+        <td class="border border-secondary">{{exercise.name}}</td>
+        <td class="border border-secondary">{{exercise.done}}</td>
+        <td class="border border-secondary">{{exercise.date}}</td>
+      </tr>
       <tr>
-        <td>
-          {{exercise.id}}
-          {{exercise.name}}
-          {{exercise.done}}
-          {{exercise.date}}
-          <!-- add date here automatically-->
-        </td>
         <td>
           <form method="POST" action="./update">
             <input type="hidden" value="{{exercise.name}}" name="oldname">
@@ -67,7 +141,7 @@
         </td>
       </tr>
       {% endfor %}
-    </table>
+    </table> -->
   </main>
 </body>
 
