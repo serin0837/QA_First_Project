@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
-# import pymysql
+import pymysql
 
 
 app = Flask(__name__)
