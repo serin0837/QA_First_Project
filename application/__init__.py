@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://qatraining:password@localhost:3306/flaskdb'
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['QA_DATABASE_CONNECTION']
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
