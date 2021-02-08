@@ -68,6 +68,7 @@ Goals table consist of id, goal name, goal set date, goal finish date, goal succ
 
 
 ## 4. Continuos Integration
+<img width="475" alt="ci pipleline" src="https://user-images.githubusercontent.com/64602280/107214129-5b0ca900-6a01-11eb-9138-2bee1c15fbb0.PNG">
 The general workflow for my project is to start with the Trello board where I designed my project. I have followed my board to write the code on VScode. Tested the code to catch any errors and to fix them. The application will be running on the Jenkins server that I have created on the cloud instance. Each time I push the code to my repo on Github, Jenkins will automatically run the commands that I pre-wrote. If the test is passed, my project will be deployed with Gunicorn.
 
 
