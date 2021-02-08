@@ -9,13 +9,13 @@ Serin Jeon
 <hr>
 
 ## Contents
-1. [Brief](#1.-Brief)
-2. [Kanban board](#2.-Kanban-board)
-3. [ERD](#3.-ERD)
-4. [Continuos Integration](#4.-Continuos-Integration)
-5. [Testing](#5.-Testing)
-6. [Risk assessment](#6.-Risk-assessment)
-7. [Evaluation](#7.-Evaluation)
+1. Brief
+2. Kanban board
+3. ERD
+4. Continuos Integration
+5. Testing
+6. Risk assessment
+7. Evaluation
 <hr>
 
 ## 1. Brief
@@ -51,7 +51,7 @@ I used the Trello board to keep track of my project.
 
 As you can see in the above images, I created user stories of what users wanted to able to do in the web application. A user story is the end goal of the project expressed from the user's perspective.
 
-I also created acceptance criteria to consider for the software project's requirement to be done. Acceptance criteria to ensure to achieve project expectations to meet. 
+I also created acceptance criteria to consider for the software project's requirement to be done. 
 
 The rest of the board is divided into three different parts. To do, Doing and Done.
 In this project, as you can see, I have completed the essential tasks to achieve the project goals except for the login and out functionality.
@@ -81,14 +81,14 @@ Below is my test coverage which covers 100% of the unit test.
 
 ## 6. Risk assessment
 
-I am sure that there would be a lot of risks in this project but below is the risk that I can assume. I would like to update the risk assessment as my knowledge of it gets better.
+I am sure that there would be a lot of risks in this project as this project focus functioning web application with CRUD database but below is the risk that I can assume. I would like to update the risk assessment as my knowledge of it gets better.
 
 |Description|Assessment|Risk|Impact|Response|  
 |---|---|---|---|---|
 |Data validation|In this application there is no validation checker|High|High|Implement validator in form input and show the error message to user|
-|SQL database security|This project does not have Login and Logout functionality and anyone can mutate DB|High|High|Add login and out functionality to DB|
+|SQL database security|This project does not have login and logout functionality and anyone can mutate DB.|High|High|Add login and out functionality to DB|
 |AWS instance failure|If AWS instance failure, the entire application would not function.|Low|High|Create spare instance|
-
+|Traffic overload|As I only tested 2 worker in Gunicorn server could faile with high traffic. |High|High|Test with Gunicorn with more workers |
 
 ## 7. Evaluation
  - Issues that I solved: 
